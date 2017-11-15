@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>address</title>
+<script src="jquery.1.11.3.min.js"></script>
+<!-- <script src="../src/address.js"></script> -->
+
+<script src="../dist/address.min.js"></script>
+<style>
+.testform { width:500px;border-collapse: collapse;}
+.testform th,.testform td { white-space:nowrap; padding:8px 20px;border: 1px #eee solid;}
+.testform th { font-weight:normal; text-align:right;background: #fcfcfc}
+select {height: 30px;}
+</style>
+</head>
+<body>
+
+<table class="testform">
+    <tr>
+        <th>地点</th>
+        <td>
+            <select id="addressProvince">
+            </select>
+            <select id="addressCity">
+            </select>
+            <select id="addressDistrict">
+            </select>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(function(){
+        var myAddress = new address({
+            //自定义数据
+            /*data : [
+				{
+					select : '#addressProvince',
+					label : '省'
+					value : xxx
+				},
+				{
+					select : '#addressCity',
+					label : '市'
+					value : xxx
+				},
+				{
+					select : '#addressDistrict',
+					label : '区'
+					value : xxx
+                }
+                //...支持无级扩展
+			],*/
+			onInit : function(address){
+                console.log(address);
+                address.set(['湖北省', '武汉', '江汉区']);
+            }
+        });
+    })
+</script>
+</body>
+</html>
