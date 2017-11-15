@@ -59,7 +59,7 @@ var myAddress = new address({
 ##### Object function
 |Name |Description|
 |:--:|-----|
-|`set`|验证单项 @param (Array)|
+|`set`|设置值 @param (Array)|
 
 ```javascript
 myAddress.set(['湖北省', '武汉', '江汉区']);
