@@ -11,7 +11,8 @@
 .testform { width:500px;border-collapse: collapse;}
 .testform th,.testform td { white-space:nowrap; padding:8px 20px;border: 1px #eee solid;}
 .testform th { font-weight:normal; text-align:right;background: #fcfcfc}
-select {height: 30px;}
+select,
+button {height: 30px;}
 </style>
 </head>
 <body>
@@ -26,37 +27,79 @@ select {height: 30px;}
             </select>
             <select id="addressDistrict">
             </select>
+
+            <button id="mydata">自定义数据</button>
         </td>
     </tr>
 </table>
 
 <script>
-    $(function(){
+    $(function(){        
         var myAddress = new address({
-            //自定义数据
-            /*data : [
-				{
-					select : '#addressProvince',
-					label : '省'
-					value : xxx
-				},
-				{
-					select : '#addressCity',
-					label : '市'
-					value : xxx
-				},
-				{
-					select : '#addressDistrict',
-					label : '区'
-					value : xxx
-                }
-                //...支持无级扩展
-			],*/
 			onInit : function(address){
                 console.log(address);
                 address.set(['湖北省', '武汉', '江汉区']);
             }
         });
+
+        $('#mydata').on('click', setMydata);
+
+        function setMydata(){
+            var data_1 = [
+                {"id": 1, "name": "亚洲"},
+                {"id": 2, "name": "欧洲"},
+                {"id": 3, "name": "美洲"},
+                {"id": 4, "name": "非洲"}
+            ];
+            var data_2 = [
+                {"id": 1, "name": "中国", pid:1},
+                {"id": 2, "name": "日本", pid:1},
+                {"id": 3, "name": "韩国", pid:1},
+                {"id": 4, "name": "英国", pid:2},
+                {"id": 5, "name": "法国", pid:2},
+                {"id": 6, "name": "德国", pid:2},
+                {"id": 7, "name": "美国", pid:3},
+                {"id": 8, "name": "加拿大", pid:3},
+                {"id": 9, "name": "巴西", pid:3},
+                {"id": 10, "name": "埃及", pid:4}
+            ];        
+            var data_3 = [
+                {"id": 1, "name": "北京", pid:1},
+                {"id": 2, "name": "上海", pid:1},
+                {"id": 3, "name": "东京", pid:2},
+                {"id": 4, "name": "首尔", pid:3},
+                {"id": 5, "name": "伦敦", pid:4},
+                {"id": 6, "name": "巴黎", pid:5},
+                {"id": 7, "name": "柏林", pid:6},
+                {"id": 8, "name": "纽约", pid:7},
+                {"id": 9, "name": "渥太华", pid:8},
+                {"id": 10, "name": "里约热内卢", pid:9},
+                {"id": 11, "name": "开罗", pid:10}
+            ];
+            var myAddress = new address({            
+            /*自定义数据*/
+            data : [
+				{
+					select : '#addressProvince',
+					label : '洲',
+					value : data_1
+				},
+				{
+					select : '#addressCity',
+					label : '国家',
+					value : data_2
+				},
+				{
+					select : '#addressDistrict',
+					label : '地区',
+					value : data_3
+                }
+            ],
+			onInit : function(address){
+                address.set(['亚洲', '中国', '上海']);
+            }
+        });
+        }
     })
 </script>
 </body>
